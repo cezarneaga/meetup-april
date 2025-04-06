@@ -1,9 +1,10 @@
-import { type NodeProps, useReactFlow } from "reactflow";
-import { Remark } from "react-remark";
-import { useCallback } from "react";
+import React, { useCallback } from 'react';
+import { Remark } from 'react-remark';
+import { type NodeProps, useReactFlow } from 'reactflow';
 
 export type SlideData = {
-  source: string;
+  source: string | React.ComponentType;
+  type: 'remark' | 'image' | 'component';
   left?: string;
   up?: string;
   down?: string;
@@ -23,7 +24,7 @@ const style = {
 } satisfies React.CSSProperties;
 
 export function Slide({ data }: NodeProps<SlideData>) {
-  const { source, left, up, down, right } = data;
+  const { source, type, left, up, down, right } = data;
   const { fitView } = useReactFlow();
 
   const moveToNextSlide = useCallback(
@@ -38,7 +39,10 @@ export function Slide({ data }: NodeProps<SlideData>) {
 
   return (
     <article className="slide" style={style}>
-      <Remark>{source}</Remark>
+      <img src="/mavie-logo.svg" alt="Mavie" className="absolute top-5 right-5 w-24 h-auto" />
+      {type === 'remark' && <Remark>{source as string}</Remark>}
+      {type === 'image' && <img src={source as string} alt={source as string} className="w-full h-full object-cover" />}
+      {type === 'component' && typeof source === 'function' && React.createElement(source)}
       <footer className="slide__controls nopan">
         {left && <button onClick={(e) => moveToNextSlide(e, left)}>←</button>}
         {up && <button onClick={(e) => moveToNextSlide(e, up)}>↑</button>}

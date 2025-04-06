@@ -1,14 +1,14 @@
-import { KeyboardEventHandler, useCallback, useState } from "react";
-import ReactFlow, { useReactFlow, NodeMouseHandler } from "reactflow";
+import { KeyboardEventHandler, useCallback, useState } from 'react';
+import ReactFlow, { NodeMouseHandler, useReactFlow } from 'reactflow';
 
-import { Slide, SlideData } from "./Slide";
-import { slides, slidesToElements } from "./slides";
+import { Slide, SlideData } from './Slide';
+import { slides, slidesToElements } from './slides';
 
 const nodeTypes = {
   slide: Slide,
 };
 
-const initialSlide = "01";
+const initialSlide = '01';
 const { nodes, edges } = slidesToElements(initialSlide, slides);
 
 export default function App() {
@@ -20,10 +20,10 @@ export default function App() {
       const slide = slides[currentSlide];
 
       switch (event.key) {
-        case "ArrowLeft":
-        case "ArrowUp":
-        case "ArrowDown":
-        case "ArrowRight": {
+        case 'ArrowLeft':
+        case 'ArrowUp':
+        case 'ArrowDown':
+        case 'ArrowRight': {
           const direction = event.key.slice(5).toLowerCase() as keyof SlideData;
           const target = slide[direction];
 
@@ -31,7 +31,7 @@ export default function App() {
           // only part of a larger application.
           event.preventDefault();
 
-          if (target) {
+          if (target && typeof target === 'string') {
             setCurrentSlide(target);
             fitView({ nodes: [{ id: target }], duration: 100 });
           }
