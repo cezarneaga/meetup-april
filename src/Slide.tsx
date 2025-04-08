@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 import { Remark } from 'react-remark';
+import remarkGfm from 'remark-gfm';
+
 import { type NodeProps, useReactFlow } from 'reactflow';
 
 export type SlideData = {
@@ -40,7 +42,7 @@ export function Slide({ data }: NodeProps<SlideData>) {
   return (
     <article className="slide" style={style}>
       <img src="/mavie-logo.svg" alt="Mavie" className="absolute top-5 right-5 w-24 h-auto" />
-      {type === 'remark' && <Remark>{source as string}</Remark>}
+      {type === 'remark' && <Remark remarkPlugins={[remarkGfm]}>{source as string}</Remark>}
       {type === 'image' && <img src={source as string} alt={source as string} className="w-full h-full object-cover" />}
       {type === 'component' && typeof source === 'function' && React.createElement(source)}
       <footer className="slide__controls nopan">
