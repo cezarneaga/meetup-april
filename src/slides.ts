@@ -1,5 +1,6 @@
 import { Types } from '@/components/app-types';
 import { Cag } from '@/components/cag';
+import { Sso } from '@/components/sso';
 import { Edge, Node } from 'reactflow';
 import { SLIDE_HEIGHT, SLIDE_PADDING, SLIDE_WIDTH, SlideData } from './Slide';
 
@@ -103,12 +104,12 @@ const slide04 = {
     source: `
 # A journey of discovery and learning
 
-## will not
+## Warning: will not
 
-- Tell you to use any of the approaches mentioned today
+- tell you to use any of the approaches mentioned today
 - tell you which of them is better or worse
 
-## Want you to join in the journey and take what you wish
+## Join in the journey for a couple of minutes and take what you wish
 
 - from our challenges
 - from our questions
@@ -134,7 +135,7 @@ const slide05 = {
 
 ## Humble beginnings
 - FusionAuth local dev is amazing
-- FusionAuth says you can customise auth pages: [#7671460be](#)
+- FusionAuth says you can customise auth pages: [7671460](#)
 - We kinda make it work but we are not quite happy hipos
 
 `,
@@ -158,7 +159,7 @@ const slide06 = {
 ## Central Authentication Gateway (CAG) solution
 - We ditch NextAuth and Oauth
 - started using fusion auth api directly
-- lets check the code [b4543a2](#)
+- lets check some code [b4543a2](#)
 
 `,
     type: 'remark',
@@ -181,11 +182,11 @@ const slide062 = {
 # Central Authentication Gateway (CAG)
 
 ## Challenges
-- Everyone wanted their own colors/logos/messages - Multi Branding is hard
+- everyone wanted their own colors/logos/messages - Multi Branding is hard
 - access tokens needed to have different scopes - different permissions for each app
 - auth app got you the token for the app requesting it.
 - naively implemented api calls to fusion
-- searchParam heavy
+- searchParams heavy
 - performance marketing team difficult to please
 `,
     type: 'remark',
@@ -195,7 +196,8 @@ const slide07 = {
   id: '07',
   data: {
     left: '06',
-    // up: '071',
+    up: '071',
+    right: '08',
     source: `
 # Third try
 
@@ -211,10 +213,65 @@ const slide07 = {
     type: 'remark',
   },
 };
+const slide071 = {
+  id: '071',
+  data: {
+    down: '07',
+    source: Sso,
+    type: 'component',
+  },
+};
+const slide08 = {
+  id: '08',
+  data: {
+    left: '07',
+    right: '09',
+    source: `
+# Whats next?
+
+## Context
+- Third party cookies are going away
+
+## Related websites sets
+- Document.requestStorageAccess()
+`,
+    type: 'remark',
+  },
+};
+const slide09 = {
+  id: '09',
+  data: {
+    left: '08',
+
+    source: `
+# Thank you
+
+## Contact
+
+cezar.neaga@mavie.care
+https://bsky.app/profile/cezar.is
+`,
+    type: 'remark',
+  },
+};
 export const slides = Object.fromEntries(
-  [slide01, slide02, slide021, slide022, slide023, slide03, slide04, slide05, slide06, slide061, slide062, slide07].map(
-    ({ id, data }) => [id, data],
-  ),
+  [
+    slide01,
+    slide02,
+    slide021,
+    slide022,
+    slide023,
+    slide03,
+    slide04,
+    slide05,
+    slide06,
+    slide061,
+    slide062,
+    slide07,
+    slide071,
+    slide08,
+    slide09,
+  ].map(({ id, data }) => [id, data]),
 ) as Record<string, SlideData>;
 
 export const slidesToElements = (initial: string, slides: Record<string, SlideData>) => {
