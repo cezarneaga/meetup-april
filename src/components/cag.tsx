@@ -3,7 +3,7 @@ export const Cag = () => {
     <div className="grid grid-cols-4 gap-4 mt-12 text-center">
       <div className="relative h-auto col-span-4 mt-24 text-center border-b-4 border-gray-300 border-dashed">
         <div className="absolute left-0 text-2xl font-bold bottom-4">get token & redirect</div>
-        <div className="gap-2 p-4 mx-auto mb-12 text-primary">CAG</div>
+        <h1 className="gap-2 p-4 mx-auto mb-12">CAG</h1>
         <div className="gap-2 p-4 mx-auto mb-24 text-white w-86 bg-primary rounded-4xl">
           <div className="text-2xl font-bold">auth app</div>
           <div className="text-xl font-bold">login.mavie.care,...</div>

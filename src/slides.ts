@@ -15,7 +15,7 @@ const slide01 = {
 
 **Cezar Neaga**
 
-**Frontend Lead @ Mavie Next**
+**developer @ Mavie Next**
 
 `,
     type: 'remark',
@@ -249,6 +249,7 @@ const slide09 = {
 ## Contact
 
 cezar.neaga@mavie.care
+
 https://bsky.app/profile/cezar.is
 `,
     type: 'remark',
